@@ -12,7 +12,7 @@ A **social deduction cricket game** for Telegram groups! Combines Mafia-style hi
 - 🏆 **XP & leaderboard** — Track stats across games
 - 📺 **Dramatic commentary** — Random events, crowd reactions, controversies!
 
-## 🚀 Quick Deploy to Render (Free)
+## 🚀 Quick Deploy (Free-Friendly Options)
 
 ### Step 1: Create a Telegram Bot
 1. Open Telegram and search for **@BotFather**
@@ -34,21 +34,37 @@ git remote add origin https://github.com/YOUR_USERNAME/cricket-mafia-bot.git
 git push -u origin main
 ```
 
-### Step 3: Deploy on Render
-1. Go to [render.com](https://render.com) and sign up (free)
-2. Click **"New +"** → **"Background Worker"**
-3. Connect your GitHub repo
-4. Configure:
-   - **Name:** `cricket-mafia-bot`
-   - **Runtime:** `Node`
-   - **Build Command:** `npm install`
-   - **Start Command:** `node src/index.js`
-5. Add **Environment Variable:**
-   - Key: `BOT_TOKEN`
-   - Value: *(paste your token from BotFather)*
-6. Click **"Create Background Worker"**
+### Step 3: Choose a Hosting Option
 
-> ⚠️ **Important:** Use "Background Worker" (NOT "Web Service") since this bot uses long-polling, not webhooks.
+Render Background Worker is often paid now, so here are better free-friendly choices for long-running bots:
+
+#### Option A (Recommended): Koyeb Free Web Service
+1. Go to [koyeb.com](https://www.koyeb.com/)
+2. Create a **Web Service** from your GitHub repo
+3. Configure:
+   - **Build Command:** `npm install`
+   - **Run Command:** `node src/index.js`
+4. Add environment variable:
+   - `BOT_TOKEN=your_bot_token`
+5. Deploy
+
+#### Option B: Railway / Northflank Free Trial Credits
+1. Create a new service from this repo
+2. Set start command to `node src/index.js`
+3. Add `BOT_TOKEN`
+4. Deploy
+
+#### Option C: Always-Free VPS (Most Reliable)
+Use an always-free VM (for example Oracle Cloud free tier), then run:
+
+```bash
+npm install
+node src/index.js
+```
+
+For production reliability on a VM, run with `pm2` so the bot auto-restarts.
+
+> ℹ️ This bot uses **long-polling**, so it should run as a continuously running process.
 
 ### Step 4: Start Playing!
 1. Add the bot to a Telegram group
